@@ -13,6 +13,8 @@ public interface PessoaDAO {
 	
 	public List<Pessoa> getTodos() throws Exception;
 
-	public Boolean remover(Pessoa pessoa) throws Exception;
+	public void remover(Long idPessoa) throws Exception;
+	
+	public Pessoa getById(Long idPessoa) throws Exception;
 
 }

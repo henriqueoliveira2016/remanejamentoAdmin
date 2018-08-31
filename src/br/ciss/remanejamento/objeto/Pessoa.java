@@ -1,5 +1,7 @@
 package br.ciss.remanejamento.objeto;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +24,9 @@ public class Pessoa {
 	@Column(name = "nome")
 	private String nome;
 	
+	@Column(name = "email")
+	private String email;
+	
 	@Column(name = "datanascimento")
 	private String dataNascimento;
 	
@@ -43,6 +48,14 @@ public class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getDataNascimento() {
 		return dataNascimento;
@@ -59,5 +72,5 @@ public class Pessoa {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	
+		
 }

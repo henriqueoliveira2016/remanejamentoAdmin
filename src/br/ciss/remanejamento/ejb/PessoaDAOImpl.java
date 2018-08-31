@@ -18,10 +18,17 @@ public class PessoaDAOImpl implements PessoaDAO{
 	@Override
 	public Pessoa salvar(Pessoa pessoa) throws Exception {
 		try {
-			bdManager.persist(pessoa);
+			if (pessoa.getIdPessoa() == null) {
+				bdManager.persist(pessoa);
+			} else {
+				bdManager.getReference(pessoa.getClass(), pessoa.getIdPessoa());
+				bdManager.merge(pessoa);
+			}
+			
 			bdManager.flush();
 			
-			return pessoa;
+			return pessoa
+					;
 		} catch(Exception e) {
 			throw e;
 		}
@@ -39,10 +46,24 @@ public class PessoaDAOImpl implements PessoaDAO{
 	}
 	
 	@Override
-	public Boolean remover(Pessoa pessoa) throws Exception {
+	public void remover(Long idPessoa) throws Exception {
 		try {
+			Pessoa pessoa = bdManager.getReference(Pessoa.class, idPessoa);
 			bdManager.remove(pessoa);
-			return true;
+			bdManager.flush();
+
+		} catch(Exception e) {
+			throw e;
+		}
+	}
+	
+	@Override
+	public Pessoa getById(Long idPessoa) throws Exception {
+		try {
+			Query query = bdManager.createQuery("SELECT p FROM Pessoa p WHERE p.idPessoa = ?");
+			query.setParameter(1, idPessoa);
+			Pessoa pessoa = (Pessoa) query.getSingleResult();
+			return pessoa;
 		} catch (Exception e) {
 			throw e;
 		}
