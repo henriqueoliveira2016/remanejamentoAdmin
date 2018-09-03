@@ -13,7 +13,7 @@ public interface PessoaDAO {
 	
 	public List<Pessoa> getTodos() throws Exception;
 
-	public void remover(Long idPessoa) throws Exception;
+	public void excluir(Long idPessoa) throws Exception;
 	
 	public Pessoa getById(Long idPessoa) throws Exception;
 

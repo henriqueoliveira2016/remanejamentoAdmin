@@ -46,7 +46,7 @@ public class PessoaDAOImpl implements PessoaDAO{
 	}
 	
 	@Override
-	public void remover(Long idPessoa) throws Exception {
+	public void excluir(Long idPessoa) throws Exception {
 		try {
 			Pessoa pessoa = bdManager.getReference(Pessoa.class, idPessoa);
 			bdManager.remove(pessoa);

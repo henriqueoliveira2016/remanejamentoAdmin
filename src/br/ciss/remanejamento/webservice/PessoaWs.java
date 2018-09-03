@@ -5,10 +5,10 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -52,13 +52,13 @@ public class PessoaWs {
 		}
 	}
 	
-	@Path(value = "/remover/{idPessoa}")
+	@Path(value = "/excluir")
 	@GET
 	@Produces(value = MediaType.APPLICATION_JSON + ";charset=UTF-8")
-	public String remover(@Context HttpServletRequest context, @PathParam("idPessoa") Long idPessoa) {
+	public String excluir(@Context HttpServletRequest context, @QueryParam("idPessoa") Long idPessoa) {
 		Gson gson = new Gson();
 		try {
-			pessoaDAO.remover(idPessoa);
+			pessoaDAO.excluir(idPessoa);
 			return gson.toJson(true);
 		} catch(Exception e) {
 			return gson.toJson(e.getMessage());
